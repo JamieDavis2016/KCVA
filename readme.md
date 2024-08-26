@@ -1,6 +1,3 @@
-Hello world
-
-
 for adding migrations;
 dotnet ef migrations add <MigrationName> --project:Infrastructure --startup-project:KCVA --output-dir:Migrations
 
