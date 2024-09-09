@@ -1,7 +1,7 @@
 ﻿using Domain.Features.Players.Commands;
-using KCVA.TestHelper.Fakers;
+using KCVA.TestHelpers.Fakers;
 
-namespace KCVA.UnitTests.Entities
+namespace KCVA.UnitTests.Features.Players
 {
     public sealed class PlayerTests
     {
@@ -12,9 +12,8 @@ namespace KCVA.UnitTests.Entities
             var player = new PlayerFaker().Generate();
 
             //Arrange
-
-            player.FirstName.Should().NotBe("");
-            player.LastName.Should().NotBe("");
+            player.FirstName.Value.Should().NotBe("");
+            player.LastName.Value.Should().NotBe("");
         }
 
         [Theory]
@@ -41,8 +40,8 @@ namespace KCVA.UnitTests.Entities
             player.Update(updatePlayer);
 
             //Assert
-            player.FirstName.Should().Be("updated");
-            player.LastName.Should().Be("user");
+            player.FirstName.Value.Should().Be("updated");
+            player.LastName.Value.Should().Be("user");
         }
 
         [Theory]

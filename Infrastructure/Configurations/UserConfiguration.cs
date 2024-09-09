@@ -9,6 +9,8 @@ namespace Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable(nameof(User) + "s");
+
+            builder.OwnsOne(x => x.Email);
         }
     }
 }

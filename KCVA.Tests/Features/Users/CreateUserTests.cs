@@ -1,7 +1,7 @@
 ﻿using Application.Features.Users.CommandHandlers;
 using Domain.Features.Users.Commands;
 
-namespace KCVA.IntegrationTests.Features.Users
+namespace KCVA.UnitTests.Features.Users
 {
     public sealed class CreateUserTests
     {

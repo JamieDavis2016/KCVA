@@ -1,6 +1,7 @@
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Identity;
+using KCVA.WebApi;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);

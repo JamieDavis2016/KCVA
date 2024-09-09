@@ -9,6 +9,9 @@ namespace Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<Player> builder)
         {
             builder.ToTable(nameof(Player) + "s");
+
+            builder.OwnsOne(x => x.FirstName);
+            builder.OwnsOne(x => x.LastName);
         }
     }
 }

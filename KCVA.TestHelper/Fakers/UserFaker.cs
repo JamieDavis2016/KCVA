@@ -1,13 +1,22 @@
 ﻿using AutoBogus;
 using Domain.Features.Users;
+using KCVA.TestHelpers.Fakers.Shared;
 
-namespace KCVA.TestHelper.Fakers
+namespace KCVA.TestHelpers.Fakers
 {
     public class UserFaker : AutoFaker<User>
     {
         public UserFaker(
-            ) {
-            RuleFor(x => x.Email, t => t.Internet.Email());
+            )
+        {
+            RuleFor(x => x.Id, y => Guid.NewGuid());
+            RuleFor(x => x.Email, EmailFaker.Create().Generate());
+        }
+
+        public static UserFaker Create()
+        {
+            return (UserFaker)new UserFaker()
+                .CustomInstantiator(x => new User(Guid.NewGuid(), EmailFaker.Create().Generate().Value));
         }
 
         public static UserFaker CreateWithParams(string email)

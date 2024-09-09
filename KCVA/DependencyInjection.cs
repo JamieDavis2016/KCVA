@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace KCVA.WebApi;
 
 public static class DependencyInjection
 {

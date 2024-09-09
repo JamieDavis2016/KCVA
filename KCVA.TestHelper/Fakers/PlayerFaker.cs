@@ -1,8 +1,7 @@
 ﻿using AutoBogus;
 using Domain.Features.Players;
-using Domain.Features.Users;
 
-namespace KCVA.TestHelper.Fakers
+namespace KCVA.TestHelpers.Fakers
 {
     public class PlayerFaker : AutoFaker<Player>
     {

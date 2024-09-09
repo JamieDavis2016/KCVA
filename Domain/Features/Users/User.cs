@@ -1,25 +1,26 @@
-﻿using Domain.Features.Users.Commands;
+﻿using Domain.Features.Shared;
+using Domain.Features.Users.Commands;
 using Domain.SeedWork;
 using EnsureThat;
 
 namespace Domain.Features.Users
 {
-    public class User : Entity, IAggregateRoot
+    public class User : BaseEntity, IAggregateRoot
     {
         public User(Guid loginId, string email)
         {
             Id = new Guid();
             LoginId = EnsureArg.IsNotDefault(loginId);
-            Email = EnsureArg.IsNotEmptyOrWhiteSpace(email);
+            Email = new Email(email);
         }
 
         public new Guid Id { get; private set; }
         public Guid LoginId { get; private set; }
-        public string Email { get; private set; }
+        public Email Email { get; private set; }
 
         public void Update(UpdateUser command)
         {
-            Email = EnsureArg.IsNotEmptyOrWhiteSpace(command.Email);
+            Email = new Email(command.Email);
         }
     }
 }

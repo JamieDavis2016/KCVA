@@ -21,8 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\KCVA.TestHelper\KCVA.TestHelper.csproj" />
+    <ProjectReference Include="..\KCVA.TestHelper\KCVA.TestHelpers.csproj" />
   </ItemGroup>
 
 </Project>
