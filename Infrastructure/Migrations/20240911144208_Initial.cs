@@ -76,7 +76,11 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false),
                     LoginId = table.Column<Guid>(type: "char(36)", nullable: false),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
+                    Email = table.Column<string>(type: "longtext", nullable: false),
+                    Created = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: true),
+                    LastModified = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {

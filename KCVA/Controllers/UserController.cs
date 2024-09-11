@@ -20,7 +20,7 @@ namespace KCVA.WebApi.Controllers
         [HttpPost]
         public async Task<Guid> CreateUser(CancellationToken cancellationToken)
         {
-            var newLogin = await Mediator.Send(new CreateUser());
+            var newLogin = await Mediator.Send(new CreateUser(), CancellationToken.None);
 
             return newLogin;
         }

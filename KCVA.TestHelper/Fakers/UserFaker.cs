@@ -11,6 +11,8 @@ namespace KCVA.TestHelpers.Fakers
         {
             RuleFor(x => x.Id, y => Guid.NewGuid());
             RuleFor(x => x.Email, EmailFaker.Create().Generate());
+            Ignore(x => x.Created);
+            Ignore(x => x.LastModified);    
         }
 
         public static UserFaker Create()

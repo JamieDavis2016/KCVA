@@ -1,3 +1,4 @@
+using Application;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Identity;
@@ -39,6 +40,7 @@ builder.Services.AddSwaggerGen(opt =>
     });
 });
 builder.Services.AddWebServices();
+builder.Services.AddApplicationServices();
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 

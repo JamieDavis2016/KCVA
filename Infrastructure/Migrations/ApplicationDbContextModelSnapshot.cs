@@ -44,8 +44,20 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTimeOffset>("LastModified")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("LastModifiedBy")
                         .HasColumnType("longtext");
 
                     b.Property<Guid>("LoginId")

@@ -1,15 +1,28 @@
-﻿using Domain.Features.Users.Commands;
+﻿using Application.Common.Interfaces;
+using Domain.Features.Users;
+using Domain.Features.Users.Commands;
 using MediatR;
 
 namespace Application.Features.Users.CommandHandlers
 {
     public sealed class CreateUserHandler : IRequestHandler<CreateUser, Guid>
     {
-        public CreateUserHandler() { }
+        private readonly IApplicationDbContext _context;
+        public CreateUserHandler(IApplicationDbContext context) 
+        {
+            _context = context;
+        }
 
         public async Task<Guid> Handle(CreateUser command, CancellationToken cancellationToken)
         {
-            return Guid.NewGuid();
+
+            var entity = new User(Guid.NewGuid(), "test@gmail.com");
+
+            _context.User.Add(entity);
+            
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return entity.Id;
         }
     }
 }
