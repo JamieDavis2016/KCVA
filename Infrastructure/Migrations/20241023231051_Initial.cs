@@ -61,8 +61,8 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false),
-                    FirstName = table.Column<string>(type: "longtext", nullable: false),
-                    LastName = table.Column<string>(type: "longtext", nullable: false)
+                    FirstName_Value = table.Column<string>(type: "longtext", nullable: false),
+                    LastName_Value = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,7 +76,7 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false),
                     LoginId = table.Column<Guid>(type: "char(36)", nullable: false),
-                    Email = table.Column<string>(type: "longtext", nullable: false),
+                    Email_Value = table.Column<string>(type: "longtext", nullable: false),
                     Created = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: true),
                     LastModified = table.Column<DateTimeOffset>(type: "datetime", nullable: false),

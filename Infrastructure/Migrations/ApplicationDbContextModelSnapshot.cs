@@ -25,14 +25,6 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
 
                     b.ToTable("Players", (string)null);
@@ -48,10 +40,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<DateTimeOffset>("LastModified")
@@ -258,6 +246,72 @@ namespace Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Features.Players.Player", b =>
+                {
+                    b.OwnsOne("Domain.Features.Shared.Name", "FirstName", b1 =>
+                        {
+                            b1.Property<Guid>("PlayerId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.HasKey("PlayerId");
+
+                            b1.ToTable("Players");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PlayerId");
+                        });
+
+                    b.OwnsOne("Domain.Features.Shared.Name", "LastName", b1 =>
+                        {
+                            b1.Property<Guid>("PlayerId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.HasKey("PlayerId");
+
+                            b1.ToTable("Players");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PlayerId");
+                        });
+
+                    b.Navigation("FirstName")
+                        .IsRequired();
+
+                    b.Navigation("LastName")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Features.Users.User", b =>
+                {
+                    b.OwnsOne("Domain.Features.Shared.Email", "Email", b1 =>
+                        {
+                            b1.Property<Guid>("UserId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.HasKey("UserId");
+
+                            b1.ToTable("Users");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId");
+                        });
+
+                    b.Navigation("Email")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -9,11 +9,14 @@ namespace Domain.Features.Shared
     {
         public const string IsValid = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
 
+        public Email() { }
+
         public Email(string value)
         {
             Validate(value);
             Value = value;
         }
+
 
         public string Value { get; private set; }
 

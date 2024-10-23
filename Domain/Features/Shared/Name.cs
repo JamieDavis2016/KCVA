@@ -7,6 +7,7 @@ namespace Domain.Features.Shared
     public sealed class Name : ValueObject
     {
         public const int MAX_VALUE = 255;
+        public Name() { }
         public Name(string value)
         {
             Validate(value);

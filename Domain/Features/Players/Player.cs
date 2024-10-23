@@ -1,17 +1,19 @@
 ﻿using Domain.Features.Players.Commands;
 using Domain.Features.Shared;
 using Domain.SeedWork;
-using EnsureThat;
 
 namespace Domain.Features.Players
 {
     public sealed class Player : Entity, IAggregateRoot
     {
+        public Player() { }
         public Player(string firstName, string lastName)
         {
             Id = new Guid();
             FirstName = new Name(firstName);
             LastName = new Name(lastName);
+            //FirstName = firstName;
+            //LastName = lastName;
         }
 
         public new Guid Id { get; private set; }
@@ -24,6 +26,8 @@ namespace Domain.Features.Players
         {
             FirstName = new Name(command.FirstName);
             LastName = new Name(command.LastName);
+            //FirstName = command.FirstName;
+            //LastName = command.LastName;
         }
     }
 }

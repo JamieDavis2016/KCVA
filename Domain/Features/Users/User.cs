@@ -7,11 +7,14 @@ namespace Domain.Features.Users
 {
     public class User : BaseEntity, IAggregateRoot
     {
+        public User() { }
+
         public User(Guid loginId, string email)
         {
             Id = new Guid();
             LoginId = EnsureArg.IsNotDefault(loginId);
             Email = new Email(email);
+            //Email = email;
         }
 
         public new Guid Id { get; private set; }
