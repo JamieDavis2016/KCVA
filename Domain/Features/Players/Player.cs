@@ -12,8 +12,6 @@ namespace Domain.Features.Players
             Id = new Guid();
             FirstName = new Name(firstName);
             LastName = new Name(lastName);
-            //FirstName = firstName;
-            //LastName = lastName;
         }
 
         public new Guid Id { get; private set; }
@@ -26,8 +24,6 @@ namespace Domain.Features.Players
         {
             FirstName = new Name(command.FirstName);
             LastName = new Name(command.LastName);
-            //FirstName = command.FirstName;
-            //LastName = command.LastName;
         }
     }
 }

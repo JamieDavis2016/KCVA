@@ -14,7 +14,6 @@ namespace Domain.Features.Users
             Id = new Guid();
             LoginId = EnsureArg.IsNotDefault(loginId);
             Email = new Email(email);
-            //Email = email;
         }
 
         public new Guid Id { get; private set; }
