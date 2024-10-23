@@ -1,4 +1,6 @@
-﻿using Domain.Features.Users.Commands;
+﻿using Domain.Features.Users;
+using Domain.Features.Users.Commands;
+using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using static KCVA.IntegrationTests.Testing;
 
@@ -11,7 +13,7 @@ namespace KCVA.IntegrationTests
         private static IServiceScopeFactory _scopeFactory = null!;
 
         [Fact]
-        public async Task GetUsers()
+        public async Task Create_a_user()
         {
             //arrange
             await Testing.Setup();
@@ -21,8 +23,12 @@ namespace KCVA.IntegrationTests
             //act
             var response = await SendAsync(createUserCommand);
 
+            var user = await FindAsync<User>(response);
+
             //assert
-            Assert.NotEqual(response, Guid.Empty);
+            //Assert.NotEqual(response, Guid.Empty);
+            user.Id.Should().Be(response);
         }
+
     }
 }
