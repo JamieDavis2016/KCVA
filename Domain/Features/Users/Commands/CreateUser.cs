@@ -6,7 +6,6 @@ namespace Domain.Features.Users.Commands
     {
         public CreateUser()
         {
-
         }
     }
 }

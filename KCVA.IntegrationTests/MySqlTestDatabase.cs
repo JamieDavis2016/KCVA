@@ -2,7 +2,6 @@
 using Infrastructure.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Respawn;
 
 namespace KCVA.IntegrationTests;
 
@@ -10,7 +9,6 @@ public class MySqlTestDatabase : ITestDatabase
 {
     private readonly string _connectionString = null!;
     private SqlConnection _connection = null!;
-    private Respawner _respawner = null!;
 
     public MySqlTestDatabase()
     {
@@ -35,11 +33,6 @@ public class MySqlTestDatabase : ITestDatabase
         var context = new ApplicationDbContext(options);
 
         context.Database.Migrate();
-
-        //_respawner = await Respawner.CreateAsync(_connectionString, new RespawnerOptions
-        //{
-        //    TablesToIgnore = new Respawn.Graph.Table[] { "__EFMigrationsHistory" }
-        //});
     }
 
     public string GetConnection()
@@ -49,7 +42,14 @@ public class MySqlTestDatabase : ITestDatabase
 
     public async Task ResetAsync()
     {
-        await _respawner.ResetAsync(_connectionString);
+        _connection = new SqlConnection(_connectionString);
+
+        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseMySQL(_connectionString)
+            .Options;
+
+        var context = new ApplicationDbContext(options);
+        context.Database.EnsureDeleted();
     }
 
     public async Task DisposeAsync()

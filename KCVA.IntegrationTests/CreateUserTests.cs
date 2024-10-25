@@ -15,8 +15,10 @@ namespace KCVA.IntegrationTests
         [Fact]
         public async Task Create_a_user()
         {
-            //arrange
-            await Testing.Setup();
+
+        //arrange
+        await Testing.ResetState();
+        await Testing.Setup();
 
             var createUserCommand = new CreateUser();
 
