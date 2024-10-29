@@ -22,7 +22,7 @@ public class MySqlTestDatabase : ITestDatabase
         _connectionString = EnsureArg.IsNotNull(connectionString);
     }
 
-    public async Task InitialiseAsync()
+    public void InitialiseAsync()
     {
         _connection = new SqlConnection(_connectionString);
 
@@ -40,7 +40,7 @@ public class MySqlTestDatabase : ITestDatabase
         return _connection.ConnectionString;
     }
 
-    public async Task ResetAsync()
+    public void ResetAsync()
     {
         _connection = new SqlConnection(_connectionString);
 

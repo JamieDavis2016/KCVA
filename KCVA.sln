@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCVA.TestHelpers", "KCVA.TestHelper\KCVA.TestHelpers.csproj", "{50F75D28-ED73-4D84-B353-C3ACE2CDE924}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.API", "Identity.API\Identity.API.csproj", "{7E2CBD71-D4D0-4226-BFB3-B8AD5278071C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{50F75D28-ED73-4D84-B353-C3ACE2CDE924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50F75D28-ED73-4D84-B353-C3ACE2CDE924}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50F75D28-ED73-4D84-B353-C3ACE2CDE924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E2CBD71-D4D0-4226-BFB3-B8AD5278071C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2CBD71-D4D0-4226-BFB3-B8AD5278071C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2CBD71-D4D0-4226-BFB3-B8AD5278071C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E2CBD71-D4D0-4226-BFB3-B8AD5278071C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

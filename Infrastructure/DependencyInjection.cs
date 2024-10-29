@@ -1,7 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Constants;
 using Infrastructure.Data;
-using Infrastructure.Identity;
 using Infrastructure.Interceptors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -27,20 +26,20 @@ namespace Infrastructure
 
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
 
-            services.AddScoped<ApplicationDbContextInitialiser>();
+            //services.AddScoped<ApplicationDbContextInitialiser>();
 
-            services.AddAuthentication()
-                .AddBearerToken(IdentityConstants.BearerScheme);
+            //services.AddAuthentication()
+            //    .AddBearerToken(IdentityConstants.BearerScheme);
 
             services.AddAuthorizationBuilder();
 
-            services
-            .AddIdentityCore<ApplicationUser>()
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddApiEndpoints();
+            //services
+            //.AddIdentityCore<ApplicationUser>()
+            //.AddRoles<IdentityRole>()
+            //.AddEntityFrameworkStores<ApplicationDbContext>()
+            //    .AddApiEndpoints();
 
-            services.AddTransient<IIdentityService, IdentityService>();
+            //services.AddTransient<IIdentityService, IdentityService>();
             services.AddSingleton(TimeProvider.System);
 
             services.AddAuthorization(options =>

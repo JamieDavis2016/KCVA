@@ -1,7 +1,12 @@
 ﻿namespace Domain.SeedWork
 {
-    internal interface IRepository<T> where T : IAggregateRoot
+    public interface IRepository<TEntity> where TEntity : class
     {
-        IUnitOfWork UnitOfWork { get; }
+        Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<TEntity> GetByIdAsync(int id);
+        Task AddAsync(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(TEntity entity);
+        Task SaveAsync();
     }
 }

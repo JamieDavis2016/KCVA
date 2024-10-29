@@ -1,12 +1,8 @@
-﻿using Domain.Constants;
-using Infrastructure.Identity;
-using Microsoft.AspNetCore.Builder;
+﻿using Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.Data
+namespace Identity.API.Data
 {
     public static class InitialiserExtensions
     {
@@ -16,9 +12,9 @@ namespace Infrastructure.Data
 
             var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
 
-            await initialiser.InitialiseAsync();
+            //await initialiser.InitialiseAsync();
 
-            await initialiser.SeedAsync();
+            //await initialiser.SeedAsync();
         }
     }
 
@@ -65,7 +61,7 @@ namespace Infrastructure.Data
         public async Task TrySeedAsync()
         {
             // Default roles
-            var administratorRole = new IdentityRole(Roles.Administrator);
+            var administratorRole = new IdentityRole("Administrator");
 
             if (_roleManager.Roles.All(r => r.Name != administratorRole.Name))
             {

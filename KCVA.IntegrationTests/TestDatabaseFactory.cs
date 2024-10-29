@@ -10,7 +10,7 @@ public static class TestDatabaseFactory
         var database = new TestcontainersTestDatabase();
 #endif
 
-        await database.InitialiseAsync();
+        database.InitialiseAsync();
 
         return database;
     }

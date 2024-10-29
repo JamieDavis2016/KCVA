@@ -1,7 +1,7 @@
 using Application;
 using Infrastructure;
 using Infrastructure.Data;
-using Infrastructure.Identity;
+//using Infrastructure.Identity;
 using KCVA.WebApi;
 using Microsoft.OpenApi.Models;
 
@@ -51,14 +51,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    await app.InitialiseDatabaseAsync();
+    //await app.InitialiseDatabaseAsync();
 }
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapIdentityApi<ApplicationUser>();
+//app.MapIdentityApi<ApplicationUser>();
 
 app.MapControllers().RequireAuthorization();
 

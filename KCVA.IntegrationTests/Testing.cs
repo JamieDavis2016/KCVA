@@ -12,7 +12,7 @@ public partial class Testing
     private static ITestDatabase _database;
     private static CustomWebApplicationFactory _factory = null!;
     private static IServiceScopeFactory _scopeFactory = null!;
-    private static string? _userId;
+    private static string _userId;
 
     public static async Task Setup()
     {
@@ -39,11 +39,6 @@ public partial class Testing
         var mediator = scope.ServiceProvider.GetRequiredService<ISender>();
 
         await mediator.Send(request);
-    }
-
-    public static string? GetUserId()
-    {
-        return _userId;
     }
 
     public static async Task<string> RunAsDefaultUserAsync()
@@ -90,11 +85,11 @@ public partial class Testing
         throw new Exception($"Unable to create {userName}.{Environment.NewLine}{errors}");
     }
 
-    public static async Task ResetState()
+    public static void ResetState()
     {
         try
         {
-            await _database.ResetAsync();
+            _database.ResetAsync();
         }
         catch (Exception)
         {
@@ -103,7 +98,7 @@ public partial class Testing
         _userId = null;
     }
 
-    public static async Task<TEntity?> FindAsync<TEntity>(params object[] keyValues)
+    public static async Task<TEntity> FindAsync<TEntity>(params object[] keyValues)
         where TEntity : class
     {
         using var scope = _scopeFactory.CreateScope();

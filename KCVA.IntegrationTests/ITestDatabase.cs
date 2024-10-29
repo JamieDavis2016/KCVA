@@ -4,11 +4,11 @@ namespace KCVA.IntegrationTests;
 
 public interface ITestDatabase
 {
-    Task InitialiseAsync();
+    void InitialiseAsync();
 
     string GetConnection();
 
-    Task ResetAsync();
+    void ResetAsync();
 
     Task DisposeAsync();
 }
