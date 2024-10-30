@@ -13,7 +13,7 @@ for updating migrations;
 dotnet ef database update --project:Infrastructure --startup-project:KCVA
 ```
 
-
+https://stackoverflow.com/questions/65906877/asp-net-core-webapi-authentication-with-identity
 
 --- Workers (if I want to stay away from Azure and use a VPS)
 https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/domain-events-design-implementation
