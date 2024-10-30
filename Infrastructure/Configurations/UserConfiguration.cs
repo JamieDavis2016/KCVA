@@ -11,6 +11,8 @@ namespace Infrastructure.Configurations
             builder.ToTable(nameof(User) + "s");
 
             builder.OwnsOne(x => x.Email);
+            builder.OwnsOne(x => x.FirstName);
+            builder.OwnsOne(x => x.LastName);
         }
     }
 }

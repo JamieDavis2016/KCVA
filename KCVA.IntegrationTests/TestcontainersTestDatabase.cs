@@ -1,7 +1,6 @@
 ﻿using Infrastructure.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Respawn;
 using System.Data.Common;
 using Testcontainers.MySql;
 
@@ -12,7 +11,6 @@ public class TestcontainersTestDatabase : ITestDatabase
     private readonly MySqlContainer _container;
     private DbConnection _connection = null!;
     private string _connectionString = null!;
-    private Respawner _respawner = null!;
 
     public TestcontainersTestDatabase()
     {
@@ -36,11 +34,6 @@ public class TestcontainersTestDatabase : ITestDatabase
         var context = new ApplicationDbContext(options);
 
         context.Database.Migrate();
-
-        _respawner = await Respawner.CreateAsync(_connectionString, new RespawnerOptions
-        {
-            TablesToIgnore = new Respawn.Graph.Table[] { "__EFMigrationsHistory" }
-        });
     }
 
     public string GetConnection()
@@ -50,7 +43,7 @@ public class TestcontainersTestDatabase : ITestDatabase
 
     public async Task ResetAsync()
     {
-        await _respawner.ResetAsync(_connectionString);
+        //await _respawner.ResetAsync(_connectionString);
     }
 
     public async Task DisposeAsync()

@@ -16,7 +16,7 @@ namespace Application.Features.Users.CommandHandlers
         public async Task<Guid> Handle(CreateUser command, CancellationToken cancellationToken)
         {
 
-            var entity = new User(Guid.NewGuid(), "test@gmail.com");
+            var entity = new User(Guid.NewGuid(), "test@gmail.com", "admin", "last");
 
             _context.User.Add(entity);
             

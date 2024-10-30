@@ -18,13 +18,13 @@ namespace KCVA.TestHelpers.Fakers
         public static UserFaker Create()
         {
             return (UserFaker)new UserFaker()
-                .CustomInstantiator(x => new User(Guid.NewGuid(), EmailFaker.Create().Generate().Value));
+                .CustomInstantiator(x => new User(Guid.NewGuid(), EmailFaker.Create().Generate().Value, NameFaker.Create().Generate().Value, NameFaker.Create().Generate().Value));
         }
 
         public static UserFaker CreateWithParams(string email)
         {
             return (UserFaker)new UserFaker()
-                .CustomInstantiator(x => new User(Guid.NewGuid(), email));
+                .CustomInstantiator(x => new User(Guid.NewGuid(), email, NameFaker.Create().Generate().Value, NameFaker.Create().Generate().Value));
         }
     }
 }

@@ -11,10 +11,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="appsettings.json" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Content Include="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -44,6 +40,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\KCVA\KCVA.WebApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Users\" />
   </ItemGroup>
 
 </Project>

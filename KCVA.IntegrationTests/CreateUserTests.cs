@@ -30,7 +30,8 @@ namespace KCVA.IntegrationTests
             //assert
             //Assert.NotEqual(response, Guid.Empty);
             user.Id.Should().Be(response);
+            user.FirstName.Value.Should().Be("admin");
+            user.LastName.Value.Should().Be("last");
         }
-
     }
 }
