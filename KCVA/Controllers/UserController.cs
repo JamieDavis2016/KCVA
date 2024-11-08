@@ -1,5 +1,7 @@
-﻿using Domain.Features.Users.Commands;
+﻿using Domain.Features.Users;
+using Domain.Features.Users.Commands;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KCVA.WebApi.Controllers
@@ -15,6 +17,13 @@ namespace KCVA.WebApi.Controllers
         {
             _logger = logger;
             Mediator = mediator;
+        }
+
+        [HttpGet]
+        [Authorize]
+        public User GetUser(CancellationToken cancellationToken)
+        {
+            return new User(Guid.NewGuid(), "TestUser");
         }
 
         [HttpPost]

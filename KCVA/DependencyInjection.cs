@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Infrastructure.Data;
 using KCVA.WebApi.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KCVA.WebApi;
@@ -25,6 +26,11 @@ public static class DependencyInjection
             options.SuppressModelStateInvalidFilter = true);
 
         services.AddEndpointsApiExplorer();
+
+        services.AddAuthentication(IdentityConstants.ApplicationScheme)
+            .AddBearerToken(IdentityConstants.BearerScheme);
+        services.AddAuthorizationBuilder();
+        services.AddAuthorization();
 
         return services;
     }

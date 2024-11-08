@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen(opt =>
         Description = "Please enter token",
         Name = "Authorization",
         Type = SecuritySchemeType.Http,
-        BearerFormat = "JWT",
+        //BearerFormat = "Bearer",
         Scheme = "bearer"
     });
 
@@ -56,6 +56,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 //app.MapIdentityApi<ApplicationUser>();
