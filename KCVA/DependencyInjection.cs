@@ -26,11 +26,10 @@ public static class DependencyInjection
             options.SuppressModelStateInvalidFilter = true);
 
         services.AddEndpointsApiExplorer();
-
-        services.AddAuthentication(IdentityConstants.ApplicationScheme)
-            .AddBearerToken(IdentityConstants.BearerScheme);
-        services.AddAuthorizationBuilder();
-        services.AddAuthorization();
+        //services.AddAuthentication(IdentityConstants.ApplicationScheme)
+        //    .AddBearerToken(IdentityConstants.BearerScheme);
+        //services.AddAuthorizationBuilder();
+        //services.AddAuthorization();
 
         return services;
     }

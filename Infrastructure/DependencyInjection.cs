@@ -2,6 +2,8 @@
 using Domain.Constants;
 using Infrastructure.Data;
 using Infrastructure.Interceptors;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -28,8 +30,12 @@ namespace Infrastructure
 
             //services.AddScoped<ApplicationDbContextInitialiser>();
 
-            //services.AddAuthentication()
-            //    .AddBearerToken(IdentityConstants.BearerScheme);
+
+            //var identityUrl = builder.Configuration.GetValue<string>("IdentityUrl");
+
+            services.AddAuthentication()
+                .AddCookie(setup => setup.ExpireTimeSpan = TimeSpan.FromMinutes(60))
+                .AddBearerToken(IdentityConstants.BearerScheme);
 
             services.AddAuthorizationBuilder();
 

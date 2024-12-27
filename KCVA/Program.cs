@@ -8,10 +8,13 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddApplicationServices();
+builder.Services.AddWebServices();
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -20,7 +23,7 @@ builder.Services.AddSwaggerGen(opt =>
         Description = "Please enter token",
         Name = "Authorization",
         Type = SecuritySchemeType.Http,
-        //BearerFormat = "Bearer",
+        BearerFormat = "Bearer",
         Scheme = "bearer"
     });
 
@@ -39,10 +42,6 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
-builder.Services.AddWebServices();
-builder.Services.AddApplicationServices();
-
-builder.Services.AddInfrastructureServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -60,7 +59,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 //app.MapIdentityApi<ApplicationUser>();
-
 app.MapControllers().RequireAuthorization();
 
 app.Run();
