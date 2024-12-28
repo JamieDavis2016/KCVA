@@ -50,4 +50,14 @@ public class TestcontainersTestDatabase : ITestDatabase
     {
         await _container.DisposeAsync();
     }
+
+    public void Initialise()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Reset()
+    {
+        throw new NotImplementedException();
+    }
 }

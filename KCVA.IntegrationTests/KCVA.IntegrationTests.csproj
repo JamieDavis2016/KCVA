@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\KCVA.TestHelper\KCVA.TestHelpers.csproj" />
     <ProjectReference Include="..\KCVA\KCVA.WebApi.csproj" />
   </ItemGroup>
 

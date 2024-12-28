@@ -17,6 +17,7 @@ namespace Domain.Features.Players
         public new Guid Id { get; private set; }
         public Name FirstName { get; private set; }
         public Name LastName { get; private set; }
+
         //ADD KCVANumber
 
         public void Update(UpdatePlayer command)

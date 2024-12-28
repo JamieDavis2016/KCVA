@@ -1,7 +1,15 @@
-﻿namespace Domain.SeedWork
+﻿using System.Linq.Expressions;
+
+namespace Domain.SeedWork
 {
-    internal interface IRepository<T> where T : IAggregateRoot
+    public interface IRepository<TEntity> where TEntity : class
     {
-        IUnitOfWork UnitOfWork { get; }
+        Task AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task DeleteAsync(int id);
+        Task<List<TEntity>> GetAllAsync(bool tracked = true);
+        List<TEntity> List(Expression<Func<TEntity, bool>> predicate);
+        Task<TEntity> GetByIdAsync(int id);
+        Task SaveAsync();
     }
 }
