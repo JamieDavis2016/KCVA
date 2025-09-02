@@ -16,16 +16,25 @@ namespace KCVA.UnitTests.Features.Players
             player.LastName.Value.Should().NotBe("");
         }
 
+        [Fact]
+        public void Create_player_that_doesnt_have_an_account()
+        {
+            //Arrange, Act
+            var player = PlayerFaker.CreateWithoutUserId().Generate();
+
+            //Arrange
+            player.UserId.Should().Be(Guid.Empty);
+        }
+
         [Theory]
         [InlineData("", "User")]
         [InlineData("test", "")]
-
         public void Cannot_create_player(string firstName, string lastName)
         {
             //Arrange,
             //Act,
             //Assert
-            Invoking(() => PlayerFaker.CreateWithParams(firstName, lastName).Generate())
+            Invoking(() => PlayerFaker.CreateWithParams(firstName, lastName, Guid.NewGuid()).Generate())
                 .Should().Throw<ArgumentException>();
         }
 

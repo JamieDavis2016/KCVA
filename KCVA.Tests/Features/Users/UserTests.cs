@@ -68,7 +68,7 @@ namespace KCVA.UnitTests.Features.Users
 
             //Act
             Invoking(() => user.Update(updateUser))
-                .Should().Throw<ArgumentException>();
+                .Should().Throw<DomainException>();
         }
 
         [Theory]

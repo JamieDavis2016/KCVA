@@ -7,16 +7,18 @@ namespace Domain.Features.Players
     public sealed class Player : Entity, IAggregateRoot
     {
         public Player() { }
-        public Player(string firstName, string lastName)
+        public Player(string firstName, string lastName, Guid userId)
         {
             Id = new Guid();
             FirstName = new Name(firstName);
             LastName = new Name(lastName);
+            UserId = userId;
         }
 
         public new Guid Id { get; private set; }
         public Name FirstName { get; private set; }
         public Name LastName { get; private set; }
+        public Guid UserId { get; private set; }
 
         //ADD KCVANumber
 
