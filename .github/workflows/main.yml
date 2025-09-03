@@ -26,11 +26,11 @@ jobs:
         mysql -e 'SHOW DATABASES;' -uroot -proot
     - name: Restore dependencies
       run: dotnet restore
-      working-directory: ./kcva
+      working-directory: ./
     - name: Build
       run: dotnet build --no-restore
-      working-directory: ./kcva
+      working-directory: ./
       
     - name: Test
       run: dotnet test --no-build --verbosity normal
-      working-directory: ./kcva
+      working-directory: ./
