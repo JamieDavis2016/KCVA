@@ -1,4 +1,5 @@
-﻿using Domain.Features.Players;
+﻿using Application.Common.Interfaces;
+using Domain.Features.Players;
 using Domain.Features.Users;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using System.Reflection;
 
 namespace Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
         { }
