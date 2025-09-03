@@ -1,6 +1,6 @@
 ﻿using Domain.Exceptions;
 using Domain.Features.Users.Commands;
-using KCVA.TestHelpers.Fakers;
+using KCVA.TestHelpers.Fakers.Users;
 
 namespace KCVA.UnitTests.Features.Users
 {

@@ -2,7 +2,7 @@
 
 public static class TestDatabaseFactory
 {
-    public static async Task<ITestDatabase> CreateAsync()
+    public static ITestDatabase CreateAsync()
     {
 #if DEBUG
         var database = new MySqlTestDatabase();
@@ -10,7 +10,7 @@ public static class TestDatabaseFactory
         var database = new TestcontainersTestDatabase();
 #endif
 
-        await database.InitialiseAsync();
+        database.Initialise();
 
         return database;
     }

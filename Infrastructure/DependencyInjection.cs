@@ -1,8 +1,10 @@
-﻿using Application.Common.Interfaces;
+﻿using Application.Features.Users;
 using Domain.Constants;
+using Domain.SeedWork;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Interceptors;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -25,7 +27,9 @@ namespace Infrastructure
             services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
             services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+            //services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
             services.AddScoped<ApplicationDbContextInitialiser>();
 

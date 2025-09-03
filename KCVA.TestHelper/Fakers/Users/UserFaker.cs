@@ -2,7 +2,7 @@
 using Domain.Features.Users;
 using KCVA.TestHelpers.Fakers.Shared;
 
-namespace KCVA.TestHelpers.Fakers
+namespace KCVA.TestHelpers.Fakers.Users
 {
     public class UserFaker : AutoFaker<User>
     {
@@ -12,19 +12,19 @@ namespace KCVA.TestHelpers.Fakers
             RuleFor(x => x.Id, y => Guid.NewGuid());
             RuleFor(x => x.Email, EmailFaker.Create().Generate());
             Ignore(x => x.Created);
-            Ignore(x => x.LastModified);    
+            Ignore(x => x.LastModified);
         }
 
         public static UserFaker Create()
         {
             return (UserFaker)new UserFaker()
-                .CustomInstantiator(x => new User(Guid.NewGuid(), EmailFaker.Create().Generate().Value));
+                .CustomInstantiator(x => new User(Guid.NewGuid(), EmailFaker.Create().Generate().Value, NameFaker.Create().Generate().Value, NameFaker.Create().Generate().Value));
         }
 
         public static UserFaker CreateWithParams(string email)
         {
             return (UserFaker)new UserFaker()
-                .CustomInstantiator(x => new User(Guid.NewGuid(), email));
+                .CustomInstantiator(x => new User(Guid.NewGuid(), email, NameFaker.Create().Generate().Value, NameFaker.Create().Generate().Value));
         }
     }
 }

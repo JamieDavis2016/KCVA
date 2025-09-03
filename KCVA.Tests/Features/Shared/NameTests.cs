@@ -1,4 +1,5 @@
 ﻿using Domain.Exceptions;
+using Domain.Features.Shared;
 using KCVA.TestHelpers.Fakers.Shared;
 
 namespace KCVA.UnitTests.Features.Shared
@@ -25,7 +26,8 @@ namespace KCVA.UnitTests.Features.Shared
         public void Name_should_have_a_maximum_number_of_letters()
         {
             Invoking(() => NameFaker.ExceedCharacterLimit().Generate())
-                .Should().Throw<DomainException>();
+                .Should().Throw<DomainException>()
+                .WithMessage($"Name cannot be longer than {Name.MAX_VALUE} letters");
         }
     }
 }

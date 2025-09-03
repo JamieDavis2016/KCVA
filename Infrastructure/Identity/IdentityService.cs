@@ -1,4 +1,5 @@
 ﻿using Application.Common.Models;
+using Domain.Features.Users.Commands;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 

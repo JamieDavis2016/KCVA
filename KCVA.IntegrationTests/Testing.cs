@@ -14,9 +14,9 @@ public partial class Testing
     private static IServiceScopeFactory _scopeFactory = null!;
     private static string? _userId;
 
-    public static async Task Setup()
+    public static void Setup()
     {
-        _database = await TestDatabaseFactory.CreateAsync();
+        _database = TestDatabaseFactory.CreateAsync();
 
         _factory = new CustomWebApplicationFactory(_database.GetConnection());
 
@@ -90,11 +90,12 @@ public partial class Testing
         throw new Exception($"Unable to create {userName}.{Environment.NewLine}{errors}");
     }
 
-    public static async Task ResetState()
+    public static void ResetState()
     {
+        _database = TestDatabaseFactory.CreateAsync();
         try
         {
-            await _database.ResetAsync();
+            _database.Reset();
         }
         catch (Exception)
         {

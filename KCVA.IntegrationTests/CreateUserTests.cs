@@ -1,36 +1,61 @@
-﻿using Domain.Features.Users;
-using Domain.Features.Users.Commands;
+﻿using Application.Common.Exceptions;
+using Domain.Features.Users;
 using FluentAssertions;
+using KCVA.TestHelpers.Fakers.Users;
 using Microsoft.Extensions.DependencyInjection;
+using static FluentAssertions.FluentActions;
 using static KCVA.IntegrationTests.Testing;
 
 namespace KCVA.IntegrationTests
 {
-    public sealed class CreateUserTests
+    public sealed class CreateUserTests : IDisposable
     {
         private static ITestDatabase _database;
         private static CustomWebApplicationFactory _factory = null!;
         private static IServiceScopeFactory _scopeFactory = null!;
 
+        public CreateUserTests()
+        {
+            Testing.Setup();
+        }
+
+        public void Dispose()
+        {
+            Testing.ResetState();
+        }
+
         [Fact]
         public async Task Create_a_user()
         {
-
-        //arrange
-        await Testing.ResetState();
-        await Testing.Setup();
-
-            var createUserCommand = new CreateUser();
+            //arrange
+            var createUserCommand = new CreateUserFaker().Generate();
 
             //act
-            var response = await SendAsync(createUserCommand);
+            var sut = await SendAsync(createUserCommand);
 
-            var user = await FindAsync<User>(response);
+            var user = await FindAsync<User>(sut);
 
             //assert
-            //Assert.NotEqual(response, Guid.Empty);
-            user.Id.Should().Be(response);
+            user.Id.Should().Be(sut);
+            user.Email.Value.Should().Be(createUserCommand.Email);
+            user.FirstName.Value.Should().Be(createUserCommand.FirstName);
+            user.LastName.Value.Should().Be(createUserCommand.LastName);
+            user.Created.Should().NotBe(null);
         }
 
+        [Fact]
+        public async Task Cannot_add_duplicate_email()
+        {
+            //arrange
+            var createUserCommand = new CreateUserFaker().Generate();
+
+            //act
+            //assert
+            var initialUser = SendAsync(createUserCommand);
+            await Invoking(async () =>
+            {
+                await SendAsync(createUserCommand);
+            }).Should().ThrowAsync<KcvaApplicationException>();
+        }
     }
 }
