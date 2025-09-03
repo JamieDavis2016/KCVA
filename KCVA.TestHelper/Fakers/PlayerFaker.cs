@@ -11,13 +11,14 @@ namespace KCVA.TestHelpers.Fakers
         public static PlayerFaker CreateWithParams(string firstName, string lastName, Guid userId)
         {
             return (PlayerFaker)new PlayerFaker()
-                .CustomInstantiator(x => new Player(firstName, lastName, userId));
+                .CustomInstantiator(x => new Player(firstName, lastName, x.Random.Int(), userId));
         }
 
-        public static PlayerFaker CreateWithoutUserId()
+        public static Player CreateWithoutUserId()
         {
-            return (PlayerFaker)new PlayerFaker()
-                .CustomInstantiator(x => new Player(x.Name.FirstName(), x.Name.LastName(), Guid.Empty));
+            return new PlayerFaker()
+                .RuleFor(x => x.UserId, y => Guid.Empty)
+                .CustomInstantiator(x => new Player(x.Name.FirstName(), x.Name.LastName(), x.Random.Int(), Guid.Empty)).Generate();
         }
     }
 }

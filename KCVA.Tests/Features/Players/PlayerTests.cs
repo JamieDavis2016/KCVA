@@ -20,7 +20,7 @@ namespace KCVA.UnitTests.Features.Players
         public void Create_player_that_doesnt_have_an_account()
         {
             //Arrange, Act
-            var player = PlayerFaker.CreateWithoutUserId().Generate();
+            var player = PlayerFaker.CreateWithoutUserId();
 
             //Arrange
             player.UserId.Should().Be(Guid.Empty);

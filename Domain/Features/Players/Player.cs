@@ -7,11 +7,12 @@ namespace Domain.Features.Players
     public sealed class Player : Entity, IAggregateRoot
     {
         public Player() { }
-        public Player(string firstName, string lastName, Guid userId)
+        public Player(string firstName, string lastName, int kcvaNumber,Guid userId)
         {
             Id = new Guid();
             FirstName = new Name(firstName);
             LastName = new Name(lastName);
+            KCVANumber = kcvaNumber;
             UserId = userId;
         }
 
@@ -19,8 +20,7 @@ namespace Domain.Features.Players
         public Name FirstName { get; private set; }
         public Name LastName { get; private set; }
         public Guid UserId { get; private set; }
-
-        //ADD KCVANumber
+        public int KCVANumber { get; private set; }
 
         public void Update(UpdatePlayer command)
         {
