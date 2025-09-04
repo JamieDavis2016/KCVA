@@ -32,6 +32,22 @@ namespace KCVA.IntegrationTests.Features.Players
             player.LastName.Value.Should().Be(createPlayerCommand.lastName);
             player.KCVANumber.Should().Be(createPlayerCommand.KcvaNumber);
             player.UserId.Should().Be(createPlayerCommand.userId);
+            player.UserId.Should().NotBe(Guid.Empty);
+        }
+
+        [Fact]
+        public async Task Create_a_player_without_a_userId()
+        {
+            //arrange
+            var createPlayerCommand = CreatePlayerFaker.CreateWithoutUserId().Generate();
+
+            //act
+            var sut = await SendAsync(createPlayerCommand);
+
+            var player = await FindAsync<Player>(sut);
+
+            //assert
+            player.UserId.Should().Be(Guid.Empty);
         }
     }
 }
