@@ -25,9 +25,55 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("KCVANumber")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("LastModified")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<Guid?>("TeamId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("TeamId");
+
                     b.ToTable("Players", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Features.Teams.Team", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<DateTimeOffset>("Created")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTimeOffset>("LastModified")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Teams", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Features.Users.User", b =>
@@ -250,6 +296,10 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Features.Players.Player", b =>
                 {
+                    b.HasOne("Domain.Features.Teams.Team", null)
+                        .WithMany("Players")
+                        .HasForeignKey("TeamId");
+
                     b.OwnsOne("Domain.Features.Shared.Name", "FirstName", b1 =>
                         {
                             b1.Property<Guid>("PlayerId")
@@ -288,6 +338,29 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("LastName")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Features.Teams.Team", b =>
+                {
+                    b.OwnsOne("Domain.Features.Shared.Name", "Name", b1 =>
+                        {
+                            b1.Property<Guid>("TeamId")
+                                .HasColumnType("char(36)");
+
+                            b1.Property<string>("Value")
+                                .IsRequired()
+                                .HasColumnType("longtext");
+
+                            b1.HasKey("TeamId");
+
+                            b1.ToTable("Teams");
+
+                            b1.WithOwner()
+                                .HasForeignKey("TeamId");
+                        });
+
+                    b.Navigation("Name")
                         .IsRequired();
                 });
 
@@ -403,6 +476,11 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Features.Teams.Team", b =>
+                {
+                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

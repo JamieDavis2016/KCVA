@@ -1,4 +1,6 @@
-﻿using Application.Features.Users;
+﻿using Application.Features.Teams;
+using Application.Features.Users;
+using Application.Features.Users.Players;
 using Domain.Constants;
 using Domain.SeedWork;
 using Infrastructure.Data;
@@ -30,6 +32,8 @@ namespace Infrastructure
             //services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
             services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
+            services.AddScoped(typeof(ITeamRepository), typeof(TeamRepository));
+            services.AddScoped(typeof(IPlayerRepository), typeof(PlayerRepository));
 
             services.AddScoped<ApplicationDbContextInitialiser>();
 

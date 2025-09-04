@@ -1,5 +1,5 @@
 ﻿using Domain.Features.Players.Commands;
-using KCVA.TestHelpers.Fakers;
+using KCVA.TestHelpers.Fakers.Players;
 
 namespace KCVA.UnitTests.Features.Players
 {

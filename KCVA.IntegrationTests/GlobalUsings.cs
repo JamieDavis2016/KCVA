@@ -6,3 +6,5 @@ global using Microsoft.AspNetCore.TestHost;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.Hosting;
 global using Xunit;
+using static FluentAssertions.FluentActions;
+using static KCVA.IntegrationTests.Testing;

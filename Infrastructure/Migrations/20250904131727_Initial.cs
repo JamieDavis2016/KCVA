@@ -57,16 +57,19 @@ namespace Infrastructure.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Players",
+                name: "Teams",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false),
-                    FirstName_Value = table.Column<string>(type: "longtext", nullable: false),
-                    LastName_Value = table.Column<string>(type: "longtext", nullable: false)
+                    Name_Value = table.Column<string>(type: "longtext", nullable: false),
+                    Created = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: true),
+                    LastModified = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Players", x => x.Id);
+                    table.PrimaryKey("PK_Teams", x => x.Id);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
@@ -77,6 +80,8 @@ namespace Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "char(36)", nullable: false),
                     LoginId = table.Column<Guid>(type: "char(36)", nullable: false),
                     Email_Value = table.Column<string>(type: "longtext", nullable: false),
+                    FirstName_Value = table.Column<string>(type: "longtext", nullable: false),
+                    LastName_Value = table.Column<string>(type: "longtext", nullable: false),
                     Created = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
                     CreatedBy = table.Column<string>(type: "longtext", nullable: true),
                     LastModified = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
@@ -199,6 +204,32 @@ namespace Infrastructure.Migrations
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "Players",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false),
+                    FirstName_Value = table.Column<string>(type: "longtext", nullable: false),
+                    LastName_Value = table.Column<string>(type: "longtext", nullable: false),
+                    UserId = table.Column<Guid>(type: "char(36)", nullable: false),
+                    KCVANumber = table.Column<int>(type: "int", nullable: false),
+                    TeamId = table.Column<Guid>(type: "char(36)", nullable: true),
+                    Created = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
+                    CreatedBy = table.Column<string>(type: "longtext", nullable: true),
+                    LastModified = table.Column<DateTimeOffset>(type: "datetime", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "longtext", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Players", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Players_Teams_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Teams",
+                        principalColumn: "Id");
+                })
+                .Annotation("MySQL:Charset", "utf8mb4");
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -235,6 +266,11 @@ namespace Infrastructure.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Players_TeamId",
+                table: "Players",
+                column: "TeamId");
         }
 
         /// <inheritdoc />
@@ -266,6 +302,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Teams");
         }
     }
 }

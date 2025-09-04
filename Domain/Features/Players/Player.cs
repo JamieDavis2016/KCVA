@@ -4,7 +4,7 @@ using Domain.SeedWork;
 
 namespace Domain.Features.Players
 {
-    public sealed class Player : Entity, IAggregateRoot
+    public sealed class Player : BaseEntity, IAggregateRoot
     {
         public Player() { }
         public Player(string firstName, string lastName, int kcvaNumber,Guid userId)

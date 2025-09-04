@@ -1,4 +1,6 @@
 ﻿using KCVA.TestHelpers.Fakers;
+using KCVA.TestHelpers.Fakers.Players;
+using KCVA.TestHelpers.Fakers.Teams;
 
 namespace KCVA.UnitTests.Features.Teams
 {
@@ -12,6 +14,20 @@ namespace KCVA.UnitTests.Features.Teams
 
             //Assert
             sut.Players.Should().NotBeEmpty();
+        }
+
+        [Fact]
+        public void Register_players_to_a_team()
+        {
+            //Arrange,
+            var sut = new TeamFaker().Generate();
+            var players = new PlayerFaker().Generate(5);
+
+            //Act
+            sut.RegisterTeam(players);
+            
+            //Assert
+            sut.Players.Count.Should().Be(5);
         }
 
         [Fact]

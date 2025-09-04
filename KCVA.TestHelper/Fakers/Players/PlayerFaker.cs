@@ -2,7 +2,7 @@
 using Domain.Features.Players;
 using Domain.Features.Users;
 
-namespace KCVA.TestHelpers.Fakers
+namespace KCVA.TestHelpers.Fakers.Players
 {
     public class PlayerFaker : AutoFaker<Player>
     {

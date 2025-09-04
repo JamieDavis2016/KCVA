@@ -6,23 +6,14 @@ using Microsoft.Extensions.DependencyInjection;
 using static FluentAssertions.FluentActions;
 using static KCVA.IntegrationTests.Testing;
 
-namespace KCVA.IntegrationTests
+namespace KCVA.IntegrationTests.Features.Users
 {
-    public sealed class CreateUserTests : IDisposable
+    [Collection("Database collection")]
+    public sealed class CreateUserTests : IClassFixture<DatabaseFixture>
     {
         private static ITestDatabase _database;
         private static CustomWebApplicationFactory _factory = null!;
         private static IServiceScopeFactory _scopeFactory = null!;
-
-        public CreateUserTests()
-        {
-            Testing.Setup();
-        }
-
-        public void Dispose()
-        {
-            Testing.ResetState();
-        }
 
         [Fact]
         public async Task Create_a_user()

@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Features.Players;
+using Domain.Features.Teams;
 using Domain.Features.Users;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -16,6 +17,8 @@ namespace Infrastructure.Data
         public DbSet<User> User { get; set; }
 
         public DbSet<Player> Player { get; set; }
+
+        public DbSet<Team> Team { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

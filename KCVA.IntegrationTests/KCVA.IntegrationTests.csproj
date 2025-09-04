@@ -43,8 +43,4 @@
     <ProjectReference Include="..\KCVA\KCVA.WebApi.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Users\" />
-  </ItemGroup>
-
 </Project>
