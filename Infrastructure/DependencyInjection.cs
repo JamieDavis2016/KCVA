@@ -1,4 +1,5 @@
 ﻿using Application.Features.Teams;
+using Application.Features.Teams.Queries;
 using Application.Features.Users;
 using Application.Features.Users.Players;
 using Domain.Constants;
@@ -6,6 +7,7 @@ using Domain.SeedWork;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.Interceptors;
+using Infrastructure.Queries;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +36,7 @@ namespace Infrastructure
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
             services.AddScoped(typeof(ITeamRepository), typeof(TeamRepository));
             services.AddScoped(typeof(IPlayerRepository), typeof(PlayerRepository));
+            services.AddScoped(typeof(ITeamQueries), typeof(TeamQueries));
 
             services.AddScoped<ApplicationDbContextInitialiser>();
 

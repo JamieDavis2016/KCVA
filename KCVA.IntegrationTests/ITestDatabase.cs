@@ -1,6 +1,4 @@
-﻿using System.Data.Common;
-
-namespace KCVA.IntegrationTests;
+﻿namespace KCVA.IntegrationTests;
 
 public interface ITestDatabase
 {

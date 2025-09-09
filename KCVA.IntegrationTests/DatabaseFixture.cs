@@ -1,4 +1,6 @@
-﻿namespace KCVA.IntegrationTests
+﻿using Application.Features.Teams.Queries;
+
+namespace KCVA.IntegrationTests
 {
     [CollectionDefinition("Database collection")]
     public class DatabaseFixture : IDisposable
@@ -7,7 +9,6 @@
         {
             Testing.ResetState();
             Testing.Setup();
-
         }
 
         public void Dispose()
