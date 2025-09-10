@@ -1,4 +1,5 @@
 ﻿using Application.Common.Exceptions;
+using Application.Features.Teams.Queries;
 using Domain.Features.Teams;
 using FluentAssertions;
 using KCVA.TestHelpers.Fakers.Teams;
@@ -45,6 +46,24 @@ namespace KCVA.IntegrationTests.Teams
             {
                 await SendAsync(createTeamCommand);
             }).Should().ThrowAsync<KcvaApplicationException>();
+        }
+
+        [Fact]
+        public async Task Get_A_Team_By_Id()
+        {
+            // Arrange
+            var createTeamCommand = new CreateTeamFaker().Generate();
+            var createdTeamId = await SendAsync(createTeamCommand);
+            var getQuery = new GetTeamById(createdTeamId);
+
+            // Act
+
+            var response = await SendAsync(getQuery);
+
+            // Assert
+            response.Should().NotBeNull();
+            response.Id.Should().Be(createdTeamId);
+            response.Name.Should().Be(createTeamCommand.Name);
         }
     }
 }

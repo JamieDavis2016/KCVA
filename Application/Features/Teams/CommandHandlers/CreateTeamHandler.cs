@@ -1,8 +1,6 @@
 ﻿using Application.Common.Exceptions;
-using Application.Features.Users;
 using Domain.Features.Teams;
 using Domain.Features.Teams.Commands;
-using Domain.Features.Users;
 using MediatR;
 
 namespace Application.Features.Teams.CommandHandlers

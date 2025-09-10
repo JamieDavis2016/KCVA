@@ -36,7 +36,7 @@ namespace KCVA.WebApi.Controllers.Features
                 new Exception("Id is not valid");
             }
 
-            return await _teamQueries.GetTeamById(id);
+            return await Mediator.Send(new GetTeamById(id), CancellationToken.None);
         }
     }
 }

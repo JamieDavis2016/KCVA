@@ -5,10 +5,12 @@ namespace Application.Features.Teams.Queries
     public sealed record TeamDto
     {
         public Guid Id { get; init; }
+        public string Name { get; init; }
 
         public TeamDto(Team team)
         {
             Id = team.Id;
+            Name = team.Name.Value;
         }
     }
 }
