@@ -16,6 +16,7 @@ namespace Domain.Features.Teams
         }
 
         public Name Name { get; private set; }
+        //public static explicit operator string(Name name) => name.Value;
         public List<Player> Players { get; private set; }
 
         public void AddPlayer(Player player)

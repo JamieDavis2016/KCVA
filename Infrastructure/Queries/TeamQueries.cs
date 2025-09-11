@@ -1,4 +1,5 @@
 ﻿using Application.Features.Teams.Queries;
+using Domain.Features.Teams;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +21,20 @@ namespace Infrastructure.Queries
                 .SingleAsync(x => x.Id == id);
 
             return new TeamDto(team);
+        }
+
+        public async Task<List<TeamDto>> GetTeamByQuery(string searchTerm, CancellationToken cancellationToken)
+        {
+            IQueryable<Team> teamQuery = _teamDbContext.Team;
+
+            if(!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                teamQuery = teamQuery.Where(x => x.Name.Value.Contains(searchTerm));
+            }
+
+            return await teamQuery
+                .Select(x => new TeamDto(x))
+                .ToListAsync(cancellationToken);
         }
     }
 }

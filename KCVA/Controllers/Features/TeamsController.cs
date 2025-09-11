@@ -38,5 +38,16 @@ namespace KCVA.WebApi.Controllers.Features
 
             return await Mediator.Send(new GetTeamById(id), CancellationToken.None);
         }
+
+        [HttpGet]
+        public async Task<List<TeamDto>> GetTeam(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                new Exception("search term is not valid");
+            }
+
+            return await Mediator.Send(new GetTeamQuery(searchTerm), CancellationToken.None);
+        }
     }
 }
