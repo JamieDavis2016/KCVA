@@ -9,8 +9,11 @@ namespace KCVA.TestHelpers.Fakers.Users
         public UserFaker(
             )
         {
+            this.Locale = "en_GB";
             RuleFor(x => x.Id, y => Guid.NewGuid());
             RuleFor(x => x.Email, EmailFaker.Create().Generate());
+            RuleFor(x => x.FirstName, NameFaker.Create().Generate());
+            RuleFor(x => x.LastName, NameFaker.Create().Generate());
             Ignore(x => x.Created);
             Ignore(x => x.LastModified);
         }

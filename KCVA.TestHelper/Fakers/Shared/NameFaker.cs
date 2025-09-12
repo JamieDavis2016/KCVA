@@ -6,7 +6,9 @@ namespace KCVA.TestHelpers.Fakers.Shared
     public class NameFaker : AutoFaker<Name>
     {
         public NameFaker() {
-            RuleFor(x => x.Value, y => y.Random.String(0, Name.MAX_VALUE));
+            this.Locale = "en_GB";
+            //RuleFor(x => x.Value, y => y.Random.String(0, Name.MAX_VALUE));
+            RuleFor(x => x.Value, y => y.Name.Random.String(0, Name.MAX_VALUE));
         }
 
         public static NameFaker Create()

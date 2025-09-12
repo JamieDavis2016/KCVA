@@ -7,9 +7,10 @@ namespace KCVA.TestHelpers.Fakers.Teams
 {
     public sealed class CreateTeamFaker : AutoFaker<CreateTeam>
     {
-        public CreateTeamFaker(
-    )
+        public CreateTeamFaker()
         {
+            this.Locale = "en_GB";
+            RuleFor(x => x.Name, y => NameFaker.Create().Generate().Value);
         }
 
         public static TeamFaker Create()
@@ -17,11 +18,5 @@ namespace KCVA.TestHelpers.Fakers.Teams
             return (TeamFaker)new TeamFaker()
                 .CustomInstantiator(x => new Team(NameFaker.Create().Generate().Value));
         }
-
-        //public static UserFaker CreateWithParams()
-        //{
-        //    return (UserFaker)new UserFaker()
-        //        .CustomInstantiator(x => new User(Guid.NewGuid(), email, NameFaker.Create().Generate().Value, NameFaker.Create().Generate().Value));
-        //}
     }
 }
