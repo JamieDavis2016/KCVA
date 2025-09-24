@@ -7,7 +7,7 @@ namespace KCVA.TestHelpers.Fakers.Shared
     {
         
         public NameFaker() {
-            RuleFor(x => x.Value, y => y.Name.Random.String(0, Name.MAX_VALUE));
+            RuleFor(x => x.Value, y => y.Name.Random.String(1, Name.MAX_VALUE));
         }
 
         public static NameFaker Create()

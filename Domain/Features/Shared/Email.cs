@@ -22,7 +22,6 @@ namespace Domain.Features.Shared
 
         public void Validate(string value)
         {
-            value = EnsureArg.IsNotEmptyOrWhiteSpace(value);
             if (!Regex.IsMatch(value, IsValid))
             {
                 throw new DomainException($"{Value}, is not a valid email address, please provide a valid email address");

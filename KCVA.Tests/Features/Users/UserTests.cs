@@ -25,7 +25,7 @@ namespace KCVA.UnitTests.Features.Users
             //Act,
             //Assert
             Invoking(() => UserFaker.CreateWithParams(email).Generate())
-                .Should().Throw<ArgumentException>();
+                .Should().Throw<DomainException>();
         }
 
         [Theory]
@@ -68,7 +68,7 @@ namespace KCVA.UnitTests.Features.Users
 
             //Act
             Invoking(() => user.Update(updateUser))
-                .Should().Throw<ArgumentException>();
+                .Should().Throw<DomainException>();
         }
 
         [Theory]

@@ -17,7 +17,7 @@ namespace KCVA.UnitTests.Features.Shared
         public void Is_empty_email()
         {
             Invoking(() => EmailFaker.CreateWithParams("").Generate())
-                .Should().Throw<ArgumentException>();
+                .Should().Throw<DomainException>();
         }
 
         [Fact]
