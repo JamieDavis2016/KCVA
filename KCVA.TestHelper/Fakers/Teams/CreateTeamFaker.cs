@@ -10,7 +10,6 @@ namespace KCVA.TestHelpers.Fakers.Teams
         public CreateTeamFaker()
         {
             this.Locale = "en_GB";
-            RuleFor(x => x.Name, y => NameFaker.Create().Generate().Value);
         }
 
         public static TeamFaker Create()
